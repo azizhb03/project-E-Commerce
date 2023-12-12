@@ -11,6 +11,7 @@ import { Footer } from './component/Footer/Footer';
 import men_banner from './component/assets/banner_mens.png'
 import women_banner from './component/assets/banner_women.png'
 import kid_banner from './component/assets/banner_kids.png'
+import Uploader from './component/uploader/Uploader';
 export default function App() {
   return (
     <div>
@@ -27,6 +28,9 @@ export default function App() {
           </Route>
           <Route path='/commande' element={<Commande />} />
           <Route path='/login' element={<LoginSignup />} />
+
+          <Route path='/uploader' element={<Uploader />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

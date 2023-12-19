@@ -1,7 +1,5 @@
 import React from "react";
 import "./Hero.css";
-import hand_icon from "../assets/hand_icon.png";
-import arrow_icon from "../assets/arrow.png";
 import hero_image from "../assets/hero_image.png";
 const Hero = () => {
   return (
@@ -11,14 +9,14 @@ const Hero = () => {
         <div>
           <div className="hero-hand-icon">
             <p>new</p>
-            <img src={hand_icon} alt=""></img>
+            <img src={"https://res.cloudinary.com/diqntq8l2/image/upload/v1702291680/blirokswg2tro4nqvwpq.png"} alt=""></img>
           </div>
           <p>collections</p>
           <p>for everyone</p>
         </div>
         <div className="hero-latest-btn">
           <div>Latest collection</div>
-          <img src={arrow_icon} alt="" />
+          <img src={"https://res.cloudinary.com/diqntq8l2/image/upload/v1702291678/gt7snpoxj5igz2kfv8ud.pnghttps://res.cloudinary.com/diqntq8l2/image/upload/v1702291678/gt7snpoxj5igz2kfv8ud.png"} alt="" />
         </div>
       </div>
 

@@ -1,15 +1,18 @@
 import React, { useState, useCallback } from "react";
 import "./LoginSignup.css";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import authStore from "../component/store/Store";
 
-import user_icon from "../component/assets/person.png";
-import email_icon from "../component/assets/email.png";
-import password_icon from "../component/assets/password.png";
 export const LoginSignup = () => {
+  const [setMail, setId] = authStore((state) => [state.setEmail, state.setId]);
   const [action, setAction] = useState("Login");
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const requester = useCallback(async () => {
     try {
@@ -28,22 +31,39 @@ export const LoginSignup = () => {
         if (res.ok) {
           const data = await res.json();
           console.log("success", data);
-          // add toast notification
+
+          toast.success("Successfully !");
+          navigate("/login");
         } else {
-          // add toast notification erro here
+          toast.error("This didn't work.");
+        }
+      } else if (action === "Login") {
+        const res = await fetch("http://localhost:5000/auth/login", {
+          method: "POST",
+
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          credentials: "include",
+        });
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
+          setMail(data.data.email);
+          setId(data.data.id);
+          toast.success("Successfully!");
+          navigate("/");
+        } else {
+          toast.error("This didn't work.");
         }
       }
-
-     // add login logic here 
-
-
-
-
     } catch (err) {
       console.log(err);
-      // add toast error here
+      toast.error("This didn't work.");
     }
-  }, [action, email, password, username]);
+  }, [action, email, password, username, setMail, setId, navigate]);
 
   return (
     <div className="container">
@@ -56,7 +76,7 @@ export const LoginSignup = () => {
           <div></div>
         ) : (
           <div className="input">
-            <img src={user_icon} alt="" />
+            <img src={"https://res.cloudinary.com/diqntq8l2/image/upload/v1702291681/vipzdegmh5mcq1wg2dse.png"} alt="" />
             <input
               type="text"
               placeholder="Name"
@@ -66,7 +86,7 @@ export const LoginSignup = () => {
         )}
 
         <div className="input">
-          <img src={email_icon} alt="" />
+          <img src={"https://res.cloudinary.com/diqntq8l2/image/upload/v1702291679/nhqdnqfznqsfqfglqbga.png"} alt="" />
           <input
             type="email"
             placeholder="Email Id"
@@ -74,7 +94,7 @@ export const LoginSignup = () => {
           />
         </div>
         <div className="input">
-          <img src={password_icon} alt="" />
+          <img src={"https://res.cloudinary.com/diqntq8l2/image/upload/v1702291681/uau18vfmecyo5fxff7pq.png"} alt="" />
           <input
             type="password"
             placeholder="Password"
@@ -93,16 +113,20 @@ export const LoginSignup = () => {
         <div
           className={action === "login" ? "submit gray" : "submit"}
           onClick={async () => {
-            setAction("Sign Up");
-            await requester();
+            if (action ==="Login") {
+              setAction("Sign Up");
+            } else await requester();
           }}
         >
           Sign Up
         </div>
         <div
           className={action === "Sign Up" ? "submit gray" : "submit"}
-          onClick={() => {
+          onClick={async () => {
+            if (action ==="Sign Up") {
+
             setAction("Login");
+          }else  await requester();
           }}
         >
           Login

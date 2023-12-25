@@ -5,7 +5,6 @@ import ShopCategory from "./pages/ShopCategory";
 import { Shop } from "./pages/Shop";
 import { LoginSignup } from "./pages/LoginSignup";
 import { Product } from "./pages/Product";
-import { Commande } from "./pages/commande";
 import { Footer } from "./component/Footer/Footer";
 import men_banner from "./component/assets/banner_mens.png";
 import women_banner from "./component/assets/banner_women.png";
@@ -17,6 +16,7 @@ import Profile from "./component/profile/Profile";
 import { Public } from "./component/Auth";
 
 import Auth from "./component/Auth";
+import { Cart } from "./pages/Cart";
 export default function App() {
   return (
     <div>
@@ -40,7 +40,7 @@ export default function App() {
           <Route path="/product" element={<Product />}>
             <Route path=":productId" element={<Product />} />
           </Route>
-          <Route path="/commande" element={<Commande />} />
+          <Route path="/cart" element={<Cart/>} />
           <Route
             path="/login"
             element={

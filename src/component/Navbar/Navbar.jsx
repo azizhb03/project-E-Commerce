@@ -77,7 +77,6 @@ export const Navbar = () => {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
-                  // You may need to include additional headers like authentication tokens if required
                 },
                 credentials: "include",
               });

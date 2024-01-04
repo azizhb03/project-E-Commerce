@@ -1,4 +1,5 @@
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from "./component/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ShopCategory from "./pages/ShopCategory";
@@ -17,6 +18,7 @@ import { Public } from "./component/Auth";
 
 import Auth from "./component/Auth";
 import { Cart } from "./pages/Cart";
+import {Formulaire } from "./component/Formul/Formul";
 export default function App() {
   return (
     <div>
@@ -58,6 +60,7 @@ export default function App() {
               </Auth>
             }
           />
+                    <Route path="/update" element={<Formulaire/>} />
 
           <Route path="/uploader" element={<Uploader />} />
         </Routes>
